@@ -6,7 +6,7 @@ import { Navbar } from '@/components/navbar/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Chill-UI | Modern React Components',
+  title: 'Artic-UI | Modern React Components',
   description: 'Beautiful and accessible React components for your Next.js applications',
 }
 

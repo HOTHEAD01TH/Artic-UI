@@ -5,17 +5,18 @@ import { CodeBracketIcon, PlayIcon, ClipboardIcon, CheckIcon } from '@heroicons/
 import { MotionDiv } from '@/components/motion/MotionDiv';
 import { motion } from 'framer-motion';
 import { Toast } from '@/components/ui/Toast';
+import { Button } from 'artic-ui';
 
 export function CodePreview() {
   const [showPreview, setShowPreview] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   
-  const codeSnippet = `import { Button } from '@chill-ui/react'
+  const codeSnippet = `import { Button } from 'artic-ui'
 
 export default function App() {
   return (
-    <Button variant="primary">
+    <Button variant="gradient" size="lg">
       Click me
     </Button>
   )

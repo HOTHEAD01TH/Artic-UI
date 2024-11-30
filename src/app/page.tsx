@@ -1,7 +1,9 @@
+'use client';
+
 import { SparklesIcon, CodeBracketIcon, CubeIcon } from '@heroicons/react/24/outline';
 import { MotionDiv, MotionButton } from '@/components/motion/MotionDiv';
 import { CodePreview } from '@/components/code-preview/CodePreview';
-
+//hey add the ice/snow effect and chilling effect to chill ui heading in navbar 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
@@ -14,7 +16,7 @@ export default function Home() {
           className="text-center"
         >
           <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-            Chill-UI
+            Artic-UI
           </h1>
           <p className="text-xl text-gray-400 mb-8">
             Beautiful, modern, and accessible React components for your Next.js applications

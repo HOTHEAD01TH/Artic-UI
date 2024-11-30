@@ -89,3 +89,26 @@ body {
     opacity: 0.2;
   }
 }
+
+@keyframes shiver {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2px, 2px) rotate(-2deg); }
+  50% { transform: translate(2px, -2px) rotate(2deg); }
+  75% { transform: translate(-2px, -2px) rotate(1deg); }
+}
+
+@keyframes shiver-cycle {
+  0%, 60%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20%, 21% { transform: translate(-2px, 2px) rotate(-2deg); }
+  22%, 23% { transform: translate(2px, -2px) rotate(2deg); }
+  24%, 25% { transform: translate(-2px, -2px) rotate(1deg); }
+  26%, 27% { transform: translate(2px, 2px) rotate(-1deg); }
+  28%, 29% { transform: translate(-2px, 1px) rotate(2deg); }
+  30%, 31% { transform: translate(2px, -1px) rotate(-2deg); }
+  32%, 33% { transform: translate(-1px, -2px) rotate(1deg); }
+  34%, 35% { transform: translate(1px, 2px) rotate(-1deg); }
+}
+
+.animate-shiver {
+  animation: shiver-cycle 5s ease-in-out infinite;
+}

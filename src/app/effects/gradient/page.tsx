@@ -157,6 +157,100 @@ export function GradientText({ children }) {
     </div>
   );
 }`
+  },
+  {
+    title: 'Gradient Outline',
+    description: 'A button with animated gradient outline',
+    preview: (
+      <div className="p-8 flex justify-center">
+        <button className="relative p-[1px] overflow-hidden rounded-lg group">
+          <div className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+          <div className="relative px-6 py-2 bg-gray-900 rounded-lg group-hover:bg-gray-800">
+            <span className="relative z-10 text-white font-medium">Gradient Outline</span>
+          </div>
+        </button>
+      </div>
+    ),
+    code: `export function GradientOutline({ children }) {
+  return (
+    <button className="relative p-[1px] overflow-hidden rounded-lg group">
+      <div className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] 
+        bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" 
+      />
+      <div className="relative px-6 py-2 bg-gray-900 rounded-lg group-hover:bg-gray-800">
+        <span className="relative z-10 text-white font-medium">{children}</span>
+      </div>
+    </button>
+  )
+}`
+  },
+  {
+    title: 'Radial Gradient',
+    description: 'Animated radial gradient effect',
+    preview: (
+      <div className="p-8">
+        <div className="h-48 w-full rounded-lg relative overflow-hidden bg-gray-900">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.15),rgba(0,0,0,0)_50%)] animate-[ping_4s_ease-in-out_infinite]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(14,165,233,0.15),rgba(0,0,0,0)_50%)] animate-[ping_4s_ease-in-out_infinite_500ms]" />
+          <div className="relative h-full flex items-center justify-center">
+            <h3 className="text-2xl font-bold text-white">Radial Gradient</h3>
+          </div>
+        </div>
+      </div>
+    ),
+    code: `export function RadialGradient({ children }) {
+  return (
+    <div className="h-48 w-full rounded-lg relative overflow-hidden bg-gray-900">
+      <div className="absolute inset-0 
+        bg-[radial-gradient(circle_at_50%_50%,
+        rgba(56,189,248,0.15),rgba(0,0,0,0)_50%)] 
+        animate-[ping_4s_ease-in-out_infinite]" 
+      />
+      <div className="absolute inset-0 
+        bg-[radial-gradient(circle_at_50%_50%,
+        rgba(14,165,233,0.15),rgba(0,0,0,0)_50%)] 
+        animate-[ping_4s_ease-in-out_infinite_500ms]" 
+      />
+      <div className="relative h-full flex items-center justify-center">
+        {children}
+      </div>
+    </div>
+  )
+}`
+  },
+  {
+    title: 'Conic Gradient',
+    description: 'Animated conic gradient effect',
+    preview: (
+      <div className="p-8">
+        <div className="h-48 w-full rounded-lg relative overflow-hidden">
+          <div className="absolute inset-0 animate-spin-slow bg-[conic-gradient(from_0deg,#14b8a6,#8b5cf6,#ec4899,#14b8a6)]" />
+          <div className="absolute inset-[2px] rounded-lg bg-gray-900 flex items-center justify-center">
+            <h3 className="text-2xl font-bold text-white">Conic Gradient</h3>
+          </div>
+        </div>
+      </div>
+    ),
+    code: `// Add to tailwind.config.js
+animation: {
+  'spin-slow': 'spin 3s linear infinite',
+}
+
+// Component
+export function ConicGradient({ children }) {
+  return (
+    <div className="h-48 w-full rounded-lg relative overflow-hidden">
+      <div className="absolute inset-0 animate-spin-slow 
+        bg-[conic-gradient(from_0deg,#14b8a6,#8b5cf6,#ec4899,#14b8a6)]" 
+      />
+      <div className="absolute inset-[2px] rounded-lg bg-gray-900 
+        flex items-center justify-center"
+      >
+        {children}
+      </div>
+    </div>
+  )
+}`
   }
 ];
 

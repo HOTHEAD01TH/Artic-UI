@@ -1,15 +1,9 @@
 'use client';
 
-import { ButtonPreview } from '@/components/code-preview/ButtonPreview';
-import { BasicModal, SlideModal, ScaleModal } from '@/components/ui/modals';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const modalVariants = [
-  {
-    id: 'basic-modal',
-    title: 'Basic Modal',
-    description: 'Simple modal with fade animation',
-    preview: <BasicModal />,
-    code: `export function BasicModal() {
+export function BasicModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -44,15 +38,10 @@ const modalVariants = [
         </div>
       )}
     </>
-  )
-}`
-  },
-  {
-    id: 'slide-modal',
-    title: 'Slide Modal',
-    description: 'Modal with slide-in animation',
-    preview: <SlideModal />,
-    code: `export function SlideModal() {
+  );
+}
+
+export function SlideModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -99,15 +88,10 @@ const modalVariants = [
         )}
       </AnimatePresence>
     </>
-  )
-}`
-  },
-  {
-    id: 'scale-modal',
-    title: 'Scale Modal',
-    description: 'Modal with scale animation',
-    preview: <ScaleModal />,
-    code: `export function ScaleModal() {
+  );
+}
+
+export function ScaleModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -154,36 +138,5 @@ const modalVariants = [
         )}
       </AnimatePresence>
     </>
-  )
-}`
-  }
-];
-
-export default function ModalsPage() {
-  return (
-    <div className="w-full max-w-[1000px] px-4">
-      <div className="max-w-2xl">
-        <h1 className="text-4xl font-bold mb-4">Modals</h1>
-        <p className="text-gray-400 text-lg mb-8">
-          Beautiful modal components with various animations and transitions.
-        </p>
-      </div>
-
-      <div className="space-y-12">
-        {modalVariants.map((variant) => (
-          <div key={variant.id}>
-            <div className="max-w-2xl mb-4">
-              <h2 className="text-2xl font-semibold">{variant.title}</h2>
-              <p className="text-gray-400 mt-1">{variant.description}</p>
-            </div>
-            <ButtonPreview
-              preview={variant.preview}
-              code={variant.code}
-              title="Preview"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
   );
 } 

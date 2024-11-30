@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonPreview } from '@/components/code-preview/ButtonPreview';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 const ParallaxCard = () => {
@@ -104,6 +104,95 @@ const ParallaxLayers = () => {
           </motion.p>
         </div>
       </div>
+    </div>
+  );
+};
+
+const ParallaxHero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  return (
+    <div 
+      className="relative h-96 overflow-hidden rounded-xl bg-gray-900"
+      onMouseMove={(e) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        setMousePosition({ x, y });
+      }}
+    >
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20"
+        style={{
+          x: mousePosition.x * 20,
+          y: mousePosition.y * 20,
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+      />
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          x: mousePosition.x * -30,
+          y: mousePosition.y * -30,
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+      />
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-white">
+        <motion.h2 
+          className="text-4xl font-bold mb-4"
+          style={{
+            x: mousePosition.x * 10,
+            y: mousePosition.y * 10,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        >
+          Parallax Hero
+        </motion.h2>
+        <motion.p
+          className="text-xl text-white/80"
+          style={{
+            x: mousePosition.x * 20,
+            y: mousePosition.y * 20,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        >
+          Move your mouse to see the effect
+        </motion.p>
+      </div>
+    </div>
+  );
+};
+
+const ParallaxGallery = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  return (
+    <div 
+      className="grid grid-cols-3 gap-4 p-8 rounded-xl bg-gray-900 min-h-[400px]"
+      onMouseMove={(e) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        setMousePosition({ x, y });
+      }}
+    >
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="aspect-square w-full rounded-lg bg-gradient-to-br from-purple-500/40 to-blue-500/40 backdrop-blur-sm"
+          animate={{
+            x: mousePosition.x * (i % 3 - 1) * 20,
+            y: mousePosition.y * (Math.floor(i / 3) - 0.5) * 20,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        >
+          <div className="w-full h-full flex items-center justify-center text-white/50">
+            Item {i + 1}
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 };
@@ -243,6 +332,106 @@ export function ParallaxLayers() {
           </motion.p>
         </div>
       </div>
+    </div>
+  );
+}`
+  },
+  {
+    title: 'Parallax Hero',
+    description: 'A hero section with multiple parallax layers',
+    preview: (
+      <div className="p-8">
+        <ParallaxHero />
+      </div>
+    ),
+    code: `export function ParallaxHero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  return (
+    <div 
+      className="relative h-96 overflow-hidden rounded-xl bg-gray-900"
+      onMouseMove={(e) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        setMousePosition({ x, y });
+      }}
+    >
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20"
+        style={{
+          x: mousePosition.x * 20,
+          y: mousePosition.y * 20,
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+      />
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          x: mousePosition.x * -30,
+          y: mousePosition.y * -30,
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+      />
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-white">
+        <motion.h2 
+          className="text-4xl font-bold mb-4"
+          style={{
+            x: mousePosition.x * 10,
+            y: mousePosition.y * 10,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        >
+          Parallax Hero
+        </motion.h2>
+        <motion.p
+          className="text-xl text-white/80"
+          style={{
+            x: mousePosition.x * 20,
+            y: mousePosition.y * 20,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        >
+          Move your mouse to see the effect
+        </motion.p>
+      </div>
+    </div>
+  );
+}`
+  },
+  {
+    title: 'Parallax Gallery',
+    description: 'A grid of items with parallax movement',
+    preview: (
+      <div className="p-8">
+        <ParallaxGallery />
+      </div>
+    ),
+    code: `export function ParallaxGallery() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  return (
+    <div 
+      className="grid grid-cols-3 gap-4 p-4 rounded-xl bg-gray-900"
+      onMouseMove={(e) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        setMousePosition({ x, y });
+      }}
+    >
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="aspect-square rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20"
+          style={{
+            transform: \`translate(\${mousePosition.x * (i % 3 - 1) * 20}px, \${mousePosition.y * (Math.floor(i / 3) - 0.5) * 20}px)\`,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        />
+      ))}
     </div>
   );
 }`

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { SearchIcon } from '@/components/icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Command } from 'cmdk';
+import { useRouter } from 'next/navigation';
 
 type SearchResult = {
   title: string;
@@ -13,24 +14,33 @@ type SearchResult = {
 };
 
 const searchResults: SearchResult[] = [
-  {
-    title: 'Button',
-    description: 'Clickable button component with various styles',
-    category: 'components',
-    href: '/components/button'
-  },
-  {
-    title: 'Card',
-    description: 'Container for content and actions',
-    category: 'components',
-    href: '/components/card'
-  },
-  // Add more components here
+  { title: 'Buttons', description: 'Interactive button components with various styles', category: 'components', href: '/components/buttons' },
+  { title: 'Forms', description: 'Form components and input elements', category: 'components', href: '/components/forms' },
+  { title: 'Cards', description: 'Content containers with different variations', category: 'components', href: '/components/cards' },
+  { title: 'Progress', description: 'Progress indicators and loading states', category: 'components', href: '/components/progress' },
+  { title: 'Avatars', description: 'User avatar components and groups', category: 'components', href: '/components/avatars' },
+  { title: 'Badges', description: 'Status indicators and labels', category: 'components', href: '/components/badges' },
+  { title: 'Inputs', description: 'Various input components for forms', category: 'components', href: '/components/inputs' },
+  { title: 'Modals', description: 'Popup modal components for dialogs', category: 'components', href: '/components/modals' },
+  { title: 'Tooltips', description: 'Informative tooltips for UI elements', category: 'components', href: '/components/tooltips' },
+  { title: 'Breadcrumbs', description: 'Navigation breadcrumbs for pages', category: 'components', href: '/components/breadcrumbs' },
+  { title: 'Tabs', description: 'Tab components for content organization', category: 'components', href: '/components/tabs' },
+  { title: 'Pagination', description: 'Pagination controls for data navigation', category: 'components', href: '/components/pagination' },
+  { title: 'Alerts', description: 'Alert components for notifications', category: 'components', href: '/components/alerts' },
+  { title: 'Skeletons', description: 'Loading skeletons for content placeholders', category: 'components', href: '/components/skeletons' },
+  { title: 'Installation', description: 'How to install and setup Artic-UI', category: 'docs', href: '/docs/installation' },
+  { title: 'Introduction', description: 'Introduction to Artic-UI', category: 'docs', href: '/docs/introduction' },
+  { title: 'Dashboard Template', description: 'Admin dashboard layout with analytics', category: 'templates', href: '/templates/dashboard' },
+  { title: 'Landing Page Template', description: 'Landing page layout for marketing', category: 'templates', href: '/templates/landing' },
+  { title: 'E-commerce Template', description: 'E-commerce site layout with product listings', category: 'templates', href: '/templates/ecommerce' },
+  { title: 'Blog Template', description: 'Blog layout with categories and posts', category: 'templates', href: '/templates/blog' },
+  { title: 'Portfolio Template', description: 'Portfolio layout for showcasing work', category: 'templates', href: '/templates/portfolio' },
 ];
 
 export function SearchDialog() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -38,11 +48,24 @@ export function SearchDialog() {
         e.preventDefault();
         setIsOpen((open) => !open);
       }
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
     };
 
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
   }, []);
+
+  const filteredResults = searchResults.filter(item => 
+    item.title.toLowerCase().includes(query.toLowerCase()) ||
+    item.description.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const handleSelect = (href: string) => {
+    setIsOpen(false);
+    router.push(href);
+  };
 
   return (
     <>
@@ -84,28 +107,20 @@ export function SearchDialog() {
                   />
                 </div>
                 <Command.List className="max-h-[300px] overflow-y-auto p-2">
-                  {searchResults
-                    .filter(item => 
-                      item.title.toLowerCase().includes(query.toLowerCase()) ||
-                      item.description.toLowerCase().includes(query.toLowerCase())
-                    )
-                    .map((item) => (
-                      <Command.Item
-                        key={item.title}
-                        value={item.title}
-                        onSelect={() => {
-                          window.location.href = item.href;
-                          setIsOpen(false);
-                        }}
-                        className="flex flex-col gap-1 rounded-lg px-4 py-3 hover:bg-gray-800 cursor-pointer"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="font-medium text-gray-100">{item.title}</span>
-                          <span className="text-xs text-gray-500 capitalize">{item.category}</span>
-                        </div>
-                        <span className="text-sm text-gray-400">{item.description}</span>
-                      </Command.Item>
-                    ))}
+                  {filteredResults.map((item) => (
+                    <Command.Item
+                      key={item.title}
+                      value={item.title}
+                      onSelect={() => handleSelect(item.href)}
+                      className="flex flex-col gap-1 rounded-lg px-4 py-3 hover:bg-gray-800 cursor-pointer"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium text-gray-100">{item.title}</span>
+                        <span className="text-xs text-gray-500 capitalize">{item.category}</span>
+                      </div>
+                      <span className="text-sm text-gray-400">{item.description}</span>
+                    </Command.Item>
+                  ))}
                 </Command.List>
               </Command>
             </motion.div>

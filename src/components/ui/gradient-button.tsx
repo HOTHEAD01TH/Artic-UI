@@ -2,11 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-interface GradientButtonProps {
-  children: React.ReactNode;
-}
-
-export default function GradientButton({ children }: GradientButtonProps) {
+export default function GradientButton({ children }: { children: React.ReactNode }) {
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}

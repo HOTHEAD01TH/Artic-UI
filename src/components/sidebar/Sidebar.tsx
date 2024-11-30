@@ -20,6 +20,10 @@ const components = [
       { title: 'Inputs', href: '/components/inputs' },
       { title: 'Modals', href: '/components/modals' },
       { title: 'Tooltips', href: '/components/tooltips' },
+      { title: 'Progress', href: '/components/progress' },
+      { title: 'Skeletons', href: '/components/skeletons' },
+      { title: 'Forms', href: '/components/forms' },
+      { title: 'Avatars', href: '/components/avatars' },
     ],
   },
   {
@@ -29,6 +33,30 @@ const components = [
       { title: 'Spotlight', href: '/effects/spotlight' },
       { title: 'Sparkles', href: '/effects/sparkles' },
       { title: 'Parallax', href: '/effects/parallax' },
+    ],
+  },
+  {
+    title: 'Data Display',
+    items: [
+      { title: 'Statistics Card', href: '/components/statistics' },
+      { title: 'Timeline', href: '/components/timeline' },
+      { title: 'Tables', href: '/components/tables' },
+    ],
+  },
+  {
+    title: 'Navigation',
+    items: [
+      { title: 'Breadcrumbs', href: '/components/breadcrumbs' },
+      { title: 'Tabs', href: '/components/tabs' },
+      { title: 'Pagination', href: '/components/pagination' },
+    ],
+  },
+  {
+    title: 'Feedback',
+    items: [
+      { title: 'Alerts', href: '/components/alerts' },
+      { title: 'Progress', href: '/components/progress' },
+      { title: 'Skeletons', href: '/components/skeletons' },
     ],
   },
 ];
@@ -46,7 +74,7 @@ export function Sidebar() {
       [&::-webkit-scrollbar-track]:rounded-full">
       <div className="p-4">
         {components.map((section) => (
-          <div key={section.title} className="mb-6">
+          <div key={section.title} className={cn("mb-6", section.title === "Getting Started" && "mt-7")}>
             <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
               {section.title}
             </h2>

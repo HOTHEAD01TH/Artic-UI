@@ -36,55 +36,73 @@ const inputVariants = [
 }`
   },
   {
-    title: 'Search Input',
-    description: 'A search input with icon and hover effect',
+    title: 'Floating Label Input',
+    description: 'Input with animated floating label',
     preview: (
       <div className="relative">
         <input
-          type="search"
-          placeholder="Search..."
-          className="w-full bg-gray-800/50 text-white pl-10 pr-4 py-2 rounded-lg border border-gray-700/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 outline-none"
+          type="text"
+          id="floating-input"
+          className="peer w-full bg-gray-800/50 text-white px-4 pt-6 pb-2 rounded-lg border border-gray-700/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 outline-none"
+          placeholder=" "
         />
-        <svg
-          className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+        <label
+          htmlFor="floating-input"
+          className="absolute text-gray-400 duration-200 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 
+          peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
+          peer-focus:scale-75 peer-focus:-translate-y-3"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
+          Email
+        </label>
       </div>
     ),
-    code: `export function SearchInput({ placeholder = "Search..." }) {
+    code: `export function FloatingLabelInput({ placeholder = "Type something..." }) {
   return (
     <div className="relative">
       <input
-        type="search"
+        type="text"
         placeholder={placeholder}
-        className="w-full bg-gray-800/50 text-white pl-10 pr-4 py-2 
-          rounded-lg border border-gray-700/50 
-          focus:border-blue-500 focus:ring-2 
-          focus:ring-blue-500/20 transition-all 
-          duration-200 outline-none"
+        className="peer w-full bg-gray-800/50 text-white px-4 pt-6 pb-2 rounded-lg border border-gray-700/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 outline-none"
+        placeholder=" "
       />
-      <svg
-        className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+      <label
+        htmlFor="floating-input"
+        className="absolute text-gray-400 duration-200 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 
+        peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
+        peer-focus:scale-75 peer-focus:-translate-y-3"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        Email
+      </label>
+    </div>
+  )
+}`
+  },
+  {
+    title: 'OTP Input',
+    description: 'Input field for one-time passwords',
+    preview: (
+      <div className="flex gap-2">
+        {[...Array(6)].map((_, i) => (
+          <input
+            key={i}
+            type="text"
+            maxLength={1}
+            className="w-12 h-12 text-center bg-gray-800/50 text-white rounded-lg border border-gray-700/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 outline-none"
+          />
+        ))}
+      </div>
+    ),
+    code: `export function OTPInput({ placeholder = "Type something..." }) {
+  return (
+    <div className="flex gap-2">
+      {[...Array(6)].map((_, i) => (
+        <input
+          key={i}
+          type="text"
+          maxLength={1}
+          className="w-12 h-12 text-center bg-gray-800/50 text-white rounded-lg border border-gray-700/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 outline-none"
         />
-      </svg>
+      ))}
     </div>
   )
 }`
@@ -97,7 +115,7 @@ export default function InputsPage() {
       <div className="max-w-2xl">
         <h1 className="text-4xl font-bold mb-4">Inputs</h1>
         <p className="text-gray-400 text-lg mb-8">
-          Beautiful and accessible input components with various styles and animations.
+          Beautiful form input components with various styles and animations.
         </p>
       </div>
 

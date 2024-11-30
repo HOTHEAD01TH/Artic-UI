@@ -82,8 +82,70 @@ const SparkleText = () => {
         ))}
       </AnimatePresence>
       <span className="relative z-10 text-2xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 text-transparent bg-clip-text">
-        ✨ Magical Text ✨
+         Magical Text 
       </span>
+    </div>
+  );
+};
+
+const ClickSparkleButton = () => {
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number }>>([]);
+
+  return (
+    <button
+      onClick={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        // Create 8 sparkles in a circle
+        for (let i = 0; i < 8; i++) {
+          const angle = (i / 8) * Math.PI * 2;
+          const sparkleX = x + Math.cos(angle) * 20;
+          const sparkleY = y + Math.sin(angle) * 20;
+          const id = Date.now() + i;
+          setSparkles(s => [...s, { id, x: sparkleX, y: sparkleY }]);
+          setTimeout(() => {
+            setSparkles(s => s.filter(spark => spark.id !== id));
+          }, 500);
+        }
+      }}
+      className="relative px-8 py-4 bg-purple-600 text-white rounded-lg overflow-hidden"
+    >
+      <AnimatePresence>
+        {sparkles.map(({ id, x, y }) => (
+          <Sparkle key={id} style={{ left: x, top: y }} color="#fff" />
+        ))}
+      </AnimatePresence>
+      Click for sparkles
+    </button>
+  );
+};
+
+const TrailSparkle = () => {
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number }>>([]);
+
+  return (
+    <div 
+      className="relative w-full h-48 bg-gray-900 rounded-lg"
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const id = Date.now();
+        setSparkles(s => [...s, { id, x, y }]);
+        setTimeout(() => {
+          setSparkles(s => s.filter(spark => spark.id !== id));
+        }, 300);
+      }}
+    >
+      <AnimatePresence>
+        {sparkles.map(({ id, x, y }) => (
+          <Sparkle key={id} style={{ left: x, top: y }} color="#fff" size={2} />
+        ))}
+      </AnimatePresence>
+      <p className="absolute inset-0 flex items-center justify-center text-white/50">
+        Move your mouse around
+      </p>
     </div>
   );
 };
@@ -195,8 +257,99 @@ export function SparkleButton() {
         bg-gradient-to-r from-yellow-400 to-yellow-600 
         text-transparent bg-clip-text"
       >
-        ✨ Magical Text ✨
+         Magical Text 
       </span>
+    </div>
+  );
+}`
+  },
+  {
+    title: 'Click Sparkle',
+    description: 'Sparkles that burst on click',
+    preview: (
+      <div className="flex items-center justify-center w-full min-h-[200px]">
+        <ClickSparkleButton />
+      </div>
+    ),
+    code: `export function ClickSparkle() {
+  const [sparkles, setSparkles] = useState([]);
+
+  const burstSparkles = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Create 8 sparkles in a circle
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const sparkleX = x + Math.cos(angle) * 20;
+      const sparkleY = y + Math.sin(angle) * 20;
+      const id = Date.now() + i;
+      setSparkles(s => [...s, { id, x: sparkleX, y: sparkleY }]);
+      setTimeout(() => {
+        setSparkles(s => s.filter(spark => spark.id !== id));
+      }, 500);
+    }
+  };
+
+  return (
+    <button
+      onClick={burstSparkles}
+      className="relative px-8 py-4 bg-purple-600 
+        text-white rounded-lg overflow-hidden"
+    >
+      <AnimatePresence>
+        {sparkles.map(({ id, x, y }) => (
+          <Sparkle key={id} 
+            style={{ left: x, top: y }} 
+            color="#fff" 
+          />
+        ))}
+      </AnimatePresence>
+      Click for sparkles
+    </button>
+  );
+}`
+  },
+  {
+    title: 'Trail Sparkle',
+    description: 'Sparkles that follow the mouse movement',
+    preview: (
+      <div className="flex items-center justify-center w-full min-h-[200px]">
+        <TrailSparkle />
+      </div>
+    ),
+    code: `export function TrailSparkle() {
+  const [sparkles, setSparkles] = useState([]);
+
+  const addTrailSparkle = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = Date.now();
+    setSparkles(s => [...s, { id, x, y }]);
+    setTimeout(() => {
+      setSparkles(s => s.filter(spark => spark.id !== id));
+    }, 300);
+  };
+
+  return (
+    <div 
+      className="relative w-full h-48 bg-gray-900 rounded-lg"
+      onMouseMove={addTrailSparkle}
+    >
+      <AnimatePresence>
+        {sparkles.map(({ id, x, y }) => (
+          <Sparkle key={id} 
+            style={{ left: x, top: y }} 
+            color="#fff" 
+            size={2}
+          />
+        ))}
+      </AnimatePresence>
+      <p className="absolute inset-0 flex items-center justify-center text-white/50">
+        Move your mouse around
+      </p>
     </div>
   );
 }`

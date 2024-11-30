@@ -4,20 +4,21 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { MoonIcon, SunIcon, GitHubIcon, TwitterIcon } from '@/components/icons';
 import { SearchDialog } from '@/components/navbar/SearchDialog';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
   const [isDark, setIsDark] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link href="/" className="text-xl font-bold text-blue-400">
+      <div className="container mx-auto px-8">
+        <div className="flex h-20 items-center justify-between">
+          <div className="flex items-center gap-12">
+            <Link href="/" className="text-2xl font-bold text-blue-400">
               Artic-UI
             </Link>
             
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-8">
               <Link href="/components" className="text-gray-300 hover:text-white">
                 Components
               </Link>
@@ -30,10 +31,10 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <SearchDialog />
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <Link
                 href="https://github.com/HOTHEAD01TH"
                 className="p-2 text-gray-400 hover:text-white"
@@ -48,16 +49,7 @@ export function Navbar() {
               >
                 <TwitterIcon className="h-5 w-5" />
               </Link>
-              <button
-                onClick={() => setIsDark(!isDark)}
-                className="p-2 text-gray-400 hover:text-white"
-              >
-                {isDark ? (
-                  <SunIcon className="h-5 w-5" />
-                ) : (
-                  <MoonIcon className="h-5 w-5" />
-                )}
-              </button>
+              <ThemeToggle />
             </div>
           </div>
         </div>

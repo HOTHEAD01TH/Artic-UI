@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { MoonIcon, SunIcon, GitHubIcon, TwitterIcon } from '@/components/icons';
 import { SearchDialog } from '@/components/navbar/SearchDialog';
-import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
-  const [isDark, setIsDark] = useState(false);
+
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm">
@@ -49,7 +48,6 @@ export function Navbar() {
               >
                 <TwitterIcon className="h-5 w-5" />
               </Link>
-              <ThemeToggle />
             </div>
           </div>
         </div>

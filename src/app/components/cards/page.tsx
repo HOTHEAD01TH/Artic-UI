@@ -6,6 +6,69 @@ import Image from 'next/image';
 
 const cardVariants = [
   {
+    title: 'Interactive Card',
+    description: 'A card with hover animations and interactive elements',
+    preview: (
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        className="bg-gray-800/50 rounded-lg overflow-hidden"
+      >
+        <div className="relative h-48 w-full">
+          <Image
+            src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
+            alt="Gradient"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-white mb-2">Interactive Card</h3>
+          <p className="text-gray-400 mb-4">
+            This card features smooth hover animations and an image.
+          </p>
+          <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg text-white">
+            Learn More
+          </button>
+        </div>
+      </motion.div>
+    ),
+    code: `import { motion } from 'framer-motion'
+import Image from 'next/image'
+export function InteractiveCard({ 
+  title, 
+  description, 
+  imageUrl 
+}) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      className="bg-gray-800/50 rounded-lg overflow-hidden"
+    >
+      <div className="relative h-48 w-full">
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-lg font-semibold text-white mb-2">
+          {title}
+        </h3>
+        <p className="text-gray-400 mb-4">{description}</p>
+        <button className="px-4 py-2 bg-blue-500 
+          hover:bg-blue-600 transition-colors 
+          rounded-lg text-white"
+        >
+          Learn More
+        </button>
+      </div>
+    </motion.div>
+  )
+}`
+  },
+  {
     title: 'Gradient Border Card',
     description: 'A card with animated gradient border effect',
     preview: (

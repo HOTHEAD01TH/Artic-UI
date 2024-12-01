@@ -52,17 +52,33 @@ export default function Home() {
             <Link href="/components/buttons">
               <MotionButton
                 whileHover={{ scale: 1.05 }}
-                className="px-8 py-4 bg-blue-600 rounded-lg font-medium text-lg"
+                className="relative px-8 py-4 rounded-lg font-medium text-lg group overflow-hidden"
               >
-                Get Started
+                {/* Ice cube layers */}
+                <div className="absolute inset-0 bg-white/10 backdrop-blur-md" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-blue-200/30" />
+                <div className="absolute inset-0 border border-white/20" />
+                {/* Shine effect */}
+                <div className="absolute -inset-2 bg-gradient-to-tr from-blue-100/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Inner frost pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_60%)]" />
+                {/* Text */}
+                <span className="relative z-10 text-white/90">Get Started</span>
               </MotionButton>
             </Link>
             <Link href="/components/buttons">
               <MotionButton
                 whileHover={{ scale: 1.05 }}
-                className="px-8 py-4 bg-gray-800 rounded-lg font-medium text-lg"
+                className="relative px-8 py-4 rounded-lg font-medium text-lg group overflow-hidden"
               >
-                Documentation
+                {/* Frost glass effect */}
+                <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-white/5" />
+                <div className="absolute inset-0 border border-white/10" />
+                {/* Hover glow */}
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+                {/* Text */}
+                <span className="relative z-10 text-white/80">Documentation</span>
               </MotionButton>
             </Link>
           </div>

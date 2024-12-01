@@ -24,7 +24,7 @@ export function Navbar() {
               <Link href="/templates" className="text-gray-300 hover:text-white">
                 Templates
               </Link>
-              <Link href="/showcase" className="text-gray-300 hover:text-white">
+              <Link href="/components" className="text-gray-300 hover:text-white">
                 Showcase
               </Link>
             </div>

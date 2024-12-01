@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "artic-ui": "^0.0.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
     "framer-motion": "^11.12.0",

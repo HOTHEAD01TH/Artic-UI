@@ -1747,6 +1747,111 @@ const cyberComponents = [
 
 // Add these to your existing components array
 components.push(...cyberComponents);
+const NeuralNetwork = () => {
+  return (
+    <div className="h-96 w-full bg-black rounded-xl overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(17,24,39,1),rgba(0,0,0,1))]" />
+      {Array.from({ length: 30 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute h-2 w-2 rounded-full bg-cyan-500/50"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
+      {Array.from({ length: 20 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute bg-cyan-500/20"
+          style={{
+            height: '1px',
+            width: '100px',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            rotate: `${Math.random() * 360}deg`,
+          }}
+          animate={{
+            opacity: [0, 1, 0],
+            scaleX: [0, 1, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const CyberScanner = () => {
+  return (
+    <div className="h-96 w-full bg-gray-900 rounded-xl overflow-hidden relative">
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent"
+        style={{ height: '4px' }}
+        animate={{
+          top: ['0%', '100%', '0%'],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-cyan-500 font-mono text-sm">
+          SCANNING...
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Add to your components array
+const moreCyberComponents = [
+  {
+    title: 'Neural Network',
+    description: 'Interactive visualization of a neural network',
+    href: '/components/neural-network',
+    component: (
+      <ButtonPreview
+        preview={<NeuralNetwork />}
+        code={`export const NeuralNetwork = () => {
+  // Component code here
+}`}
+      />
+    ),
+  },
+  {
+    title: 'Cyber Scanner',
+    description: 'Futuristic scanning effect animation',
+    href: '/components/cyber-scanner',
+    component: (
+      <ButtonPreview
+        preview={<CyberScanner />}
+        code={`export const CyberScanner = () => {
+  // Component code here
+}`}
+      />
+    ),
+  },
+];
+
+// Add these to your existing components array
+components.push(...moreCyberComponents);
 
 export default function ComponentsPage() {
   return (

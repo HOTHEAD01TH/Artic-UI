@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
-      <header className="container mx-auto px-4 min-h-screen flex items-center justify-center relative overflow-hidden">
+      <header className="container mx-auto px-4 min-h-[85vh] flex items-center justify-center relative overflow-hidden">
         {/* Ice/Snow Effect */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent mix-blend-overlay" />
@@ -54,31 +54,22 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 className="relative px-8 py-4 rounded-lg font-medium text-lg group overflow-hidden"
               >
-                {/* Ice cube layers */}
+                {/* Keep existing Get Started button styling */}
                 <div className="absolute inset-0 bg-white/10 backdrop-blur-md" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-transparent to-blue-200/30" />
                 <div className="absolute inset-0 border border-white/20" />
-                {/* Shine effect */}
                 <div className="absolute -inset-2 bg-gradient-to-tr from-blue-100/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                {/* Inner frost pattern */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_60%)]" />
-                {/* Text */}
                 <span className="relative z-10 text-white/90">Get Started</span>
               </MotionButton>
             </Link>
-            <Link href="/components/buttons">
+            <Link href="/docs/installation">
               <MotionButton
                 whileHover={{ scale: 1.05 }}
                 className="relative px-8 py-4 rounded-lg font-medium text-lg group overflow-hidden"
               >
-                {/* Frost glass effect */}
-                <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
-                <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-white/5" />
-                <div className="absolute inset-0 border border-white/10" />
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
-                {/* Text */}
-                <span className="relative z-10 text-white/80">Documentation</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600" />
+                <span className="relative z-10 text-white">Documentation</span>
               </MotionButton>
             </Link>
           </div>
@@ -438,16 +429,17 @@ export default function Home() {
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
               Get tailored UI components designed specifically for your project. Let's create something amazing together.
             </p>
-            <a 
-              href="mailto:hothead01th@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-medium text-white hover:opacity-90 transition-opacity"
+            <button 
+              type="button"
+              onClick={() => window.open('mailto:hothead01th@gmail.com', '_blank')}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-medium text-white hover:opacity-90 transition-opacity cursor-pointer"
             >
               <span>Get in Touch</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
-            </a>
+            </button>
             {/* Decorative Elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/20 blur-2xl rounded-full" />
             <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-500/20 blur-2xl rounded-full" />
@@ -634,7 +626,7 @@ export default function Home() {
             {/* Contact */}
             <div>
               <h4 className="text-lg font-semibold mb-6 text-white">Get in Touch</h4>
-              <div className="space-y-4">
+              <div className="space-y-6 flex flex-col items-start">
                 <a 
                   href="mailto:hothead01th@gmail.com" 
                   className="inline-flex items-center gap-3 text-gray-400 hover:text-white transition-all group"
@@ -646,6 +638,34 @@ export default function Home() {
                   </div>
                   <span className="group-hover:underline">hothead01th@gmail.com</span>
                 </a>
+                <div className="flex gap-5">
+                  <a 
+                    href="https://linkedin.com/in/hothead01th" 
+                    className="inline-flex items-center gap-3 text-gray-400 hover:text-white transition-all group"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gray-800 transition-colors">
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </div>
+                    <span className="group-hover:underline">LinkedIn</span>
+                  </a>
+                  <a 
+                    href="https://hothead01th.vercel.app" 
+                    className="inline-flex items-center gap-3 text-gray-400 hover:text-white transition-all group"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gray-800 transition-colors">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                      </svg>
+                    </div>
+                    <span className="group-hover:underline">Website</span>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -669,8 +689,8 @@ export default function Home() {
 
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 mt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-400">© 2024 Artic-UI. All rights reserved.</p>
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-gray-400">© 2025 Artic-UI. All rights reserved.</p>
               <div className="flex gap-6">
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Privacy Policy

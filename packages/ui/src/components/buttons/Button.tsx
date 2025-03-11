@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../lib/utils';
-import { motion } from 'framer-motion';
+import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
   'relative inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -41,13 +41,14 @@ const buttonVariants = cva(
   }
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> & 
+  VariantProps<typeof buttonVariants>;
+
+export interface ButtonProps extends ButtonBaseProps {
   asChild?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps & HTMLMotionProps<"button">>(
   ({ className, variant, size, asChild = false, children, ...props }, ref) => {
     const Comp = asChild ? motion.button : 'button';
     

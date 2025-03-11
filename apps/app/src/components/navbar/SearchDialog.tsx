@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SearchIcon } from '@/components/icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Command } from 'cmdk';
@@ -41,6 +41,7 @@ export function SearchDialog() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const router = useRouter();
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -56,6 +57,22 @@ export function SearchDialog() {
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dialogRef.current && !dialogRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const filteredResults = searchResults.filter(item => 
     item.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -88,13 +105,13 @@ export function SearchDialog() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-              onClick={() => setIsOpen(false)}
             />
             <motion.div
+              ref={dialogRef}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="fixed left-[50%] top-[20%] z-50 w-full max-w-lg -translate-x-[50%] rounded-xl bg-gray-900 shadow-xl border border-gray-800"
+              className="fixed left-[50%] top-[500%] z-50 w-full max-w-lg -translate-x-[50%] -translate-y-[50%] rounded-xl bg-gray-900 shadow-xl border border-gray-800"
             >
               <Command className="w-full" label="Command Menu">
                 <div className="flex items-center border-b border-gray-800 px-3">
@@ -104,6 +121,7 @@ export function SearchDialog() {
                     onValueChange={setQuery}
                     placeholder="Search components..."
                     className="flex-1 bg-transparent py-4 px-2 text-gray-100 outline-none placeholder:text-gray-500"
+                    autoFocus
                   />
                 </div>
                 <Command.List className="max-h-[300px] overflow-y-auto p-2">

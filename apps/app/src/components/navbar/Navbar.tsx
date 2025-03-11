@@ -35,7 +35,7 @@ export function Navbar() {
             
             <div className="flex items-center gap-4">
               <Link
-                href="https://github.com/HOTHEAD01TH"
+                href="https://github.com/HOTHEAD01TH/Artic-UI"
                 className="p-2 text-gray-400 hover:text-white"
                 target="_blank"
               >

@@ -4,6 +4,11 @@ A beautiful, accessible React component library built with Tailwind CSS and Fram
 
 <!-- GitAds-Verify: YZEHHYKTUBVL38CJ3SU6WP8Y6YAU9AO4 -->
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=hothead01th/artic-ui@github)](https://gitads.dev/v1/ad-track?source=hothead01th/artic-ui@github)
+
+
+
 ## 🌟 Features
 
 - **Modern Stack**: Built with React, TypeScript, Tailwind CSS, and Framer Motion

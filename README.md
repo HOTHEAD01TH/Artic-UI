@@ -9,7 +9,7 @@ A beautiful, accessible React component library built with Tailwind CSS and Fram
 - **Accessible**: Built with accessibility in mind
 - **Documentation**: Comprehensive documentation with live examples
 - **Monorepo Structure**: Organized using Turborepo for optimal development experience
-
+<!-- GitAds-Verify: YZEHHYKTUBVL38CJ3SU6WP8Y6YAU9AO4 -->
 ## 📦 Repository Structure
 
 ```
